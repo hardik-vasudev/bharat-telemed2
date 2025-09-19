@@ -89,9 +89,17 @@ export async function POST(request: NextRequest) {
     const jaasKeyId = process.env.JAAS_KEY_ID
     const privateKeyPath = process.env.JAAS_PRIVATE_KEY_PATH
 
-    if (!jaasAppId || !jaasKeyId || !privateKeyPath) {
+    if (!jaasAppId || !jaasKeyId) {
       return NextResponse.json(
         { success: false, error: 'JaaS configuration missing. Please check environment variables.' },
+        { status: 500, headers }
+      )
+    }
+
+    // Check for either environment variable or file path
+    if (!process.env.JAAS_PRIVATE_KEY && !privateKeyPath) {
+      return NextResponse.json(
+        { success: false, error: 'Either JAAS_PRIVATE_KEY (for deployment) or JAAS_PRIVATE_KEY_PATH (for local) must be configured.' },
         { status: 500, headers }
       )
     }
