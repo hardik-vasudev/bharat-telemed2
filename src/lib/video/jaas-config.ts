@@ -253,8 +253,9 @@ export function validateJaaSServerConfig(): { isValid: boolean; errors: string[]
     errors.push('JAAS_KEY_ID is not configured')
   }
 
-  if (!process.env.JAAS_PRIVATE_KEY_PATH) {
-    errors.push('JAAS_PRIVATE_KEY_PATH is not configured')
+  // Check for either environment variable or file path
+  if (!process.env.JAAS_PRIVATE_KEY && !process.env.JAAS_PRIVATE_KEY_PATH) {
+    errors.push('Either JAAS_PRIVATE_KEY (for deployment) or JAAS_PRIVATE_KEY_PATH (for local) must be configured')
   }
 
   return {
