@@ -96,21 +96,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Read private key
+    // Get private key from environment variable or file
     let privateKey: string
     try {
-      const keyPath = path.resolve(process.cwd(), privateKeyPath)
-      privateKey = fs.readFileSync(keyPath, 'utf8')
-      console.log('🔑 Private key loaded successfully:', {
-        keyPath,
-        keyLength: privateKey.length,
-        hasBeginKey: privateKey.includes('BEGIN'),
-        hasEndKey: privateKey.includes('END')
-      })
+      // Try environment variable first (for Vercel deployment)
+      if (process.env.JAAS_PRIVATE_KEY) {
+        privateKey = process.env.JAAS_PRIVATE_KEY.replace(/\\n/g, '\n')
+        console.log('🔑 Private key loaded from environment variable')
+      } else {
+        // Fallback to file reading (for local development)
+        const keyPath = path.resolve(process.cwd(), privateKeyPath)
+        privateKey = fs.readFileSync(keyPath, 'utf8')
+        console.log('🔑 Private key loaded from file:', {
+          keyPath,
+          keyLength: privateKey.length,
+          hasBeginKey: privateKey.includes('BEGIN'),
+          hasEndKey: privateKey.includes('END')
+        })
+      }
     } catch (error) {
       console.error('Failed to read private key:', error)
       return NextResponse.json(
-        { success: false, error: 'Failed to read JaaS private key' },
+        { success: false, error: 'Failed to read JaaS private key. Please check JAAS_PRIVATE_KEY environment variable or file path.' },
         { status: 500, headers }
       )
     }
