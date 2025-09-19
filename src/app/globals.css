@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Professional Color Palette - Modern Startup Theme */
+    --medical-50: #f8fafc;
+    --medical-100: #f1f5f9;
+    --medical-200: #e2e8f0;
+    --medical-300: #cbd5e1;
+    --medical-400: #94a3b8;
+    --medical-500: #64748b;
+    --medical-600: #475569;
+    --medical-700: #334155;
+    --medical-800: #1e293b;
+    --medical-900: #0f172a;
+
+    /* Brand Colors - Green Accents */
+    --brand-50: #f0fdf4;
+    --brand-100: #dcfce7;
+    --brand-200: #bbf7d0;
+    --brand-300: #86efac;
+    --brand-400: #4ade80;
+    --brand-500: #22c55e;
+    --brand-600: #16a34a;
+    --brand-700: #15803d;
+    --brand-800: #166534;
+    --brand-900: #14532d;
+
+    /* Base Colors */
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --border: #e2e8f0;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    letter-spacing: -0.011em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Modern professional background */
+  .medical-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, var(--muted) 100%);
+  }
+
+  /* Clean card design - modern startup style */
+  .glass-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+
+  /* Professional button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2.5 rounded-lg font-medium transition-all duration-200 border text-sm;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand-500) 0%, var(--brand-600) 100%);
+    @apply text-white border-transparent;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 197, 94, 0.1);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-700) 100%);
+    box-shadow: 0 8px 25px -8px rgba(34, 197, 94, 0.4), 0 4px 12px -2px rgba(34, 197, 94, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    @apply bg-white text-gray-700 border-gray-300;
+  }
+
+  .btn-outline:hover {
+    @apply bg-gray-50 border-gray-400;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Professional status badges */
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-online {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .status-pending {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .status-urgent {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Typography utilities for professional startup feel */
+  .heading-1 {
+    @apply text-3xl font-bold tracking-tight text-gray-900;
+    line-height: 1.2;
+  }
+
+  .heading-2 {
+    @apply text-2xl font-semibold tracking-tight text-gray-900;
+    line-height: 1.3;
+  }
+
+  .heading-3 {
+    @apply text-xl font-semibold text-gray-900;
+    line-height: 1.4;
+  }
+
+  .text-body {
+    @apply text-sm text-gray-600 leading-relaxed;
+  }
+
+  .text-caption {
+    @apply text-xs text-gray-500 font-medium;
+    letter-spacing: 0.025em;
+  }
+
+  /* Professional card hover effects */
+  .card-hover {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
