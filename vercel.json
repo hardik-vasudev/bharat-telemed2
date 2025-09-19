@@ -4,16 +4,6 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-    "NEXT_PUBLIC_JAAS_DOMAIN": "@jaas_domain",
-    "NEXT_PUBLIC_JAAS_APP_ID": "@jaas_app_id",
-    "JAAS_KEY_ID": "@jaas_key_id",
-    "JAAS_PRIVATE_KEY_PATH": "./keys/jaasauth.key"
-  },
   "functions": {
     "src/app/api/jaas/token/route.ts": {
       "maxDuration": 30
